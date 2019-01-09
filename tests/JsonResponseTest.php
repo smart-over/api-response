@@ -25,7 +25,7 @@ final class JsonResponseTest extends TestCase
     }
 
     /**
-     * Test for JsonResponse class
+     * Test for SmartOver\ApiResponse\JsonResponse
      *
      * @return  void
      */
