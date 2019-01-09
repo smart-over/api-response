@@ -2,6 +2,7 @@
   "name": "smart-over/api-response",
   "description": "Lumen standard api responses for SmartOver microservices",
   "type": "library",
+  "version": "1.0",
   "authors": [
     {
       "name": "Ömer Kamçılı",
