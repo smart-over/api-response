@@ -5,7 +5,7 @@ namespace SmartOver\ApiResponse;
 /**
  * Class ResponseCode
  *
- * @package OmerKamcili\ApiResponse
+ * @package OmerKamcili\ApiResponseedfssa
  */
 class ResponseCode
 {
@@ -23,4 +23,9 @@ class ResponseCode
      * Validation error code
      */
     const ERR002 = 'ERR002';
+
+    /**
+     * Not Found error code
+     */
+    const ERR003 = 'ERR003';
 }

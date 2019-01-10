@@ -4,6 +4,7 @@ namespace SmartOver\ApiResponse;
 
 use Laravel\Lumen\Exceptions\Handler;
 use Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -49,6 +50,9 @@ class ExceptionHandler extends Handler
 
             case $e instanceof ValidationException:
                 return (new JsonResponse(ResponseCode::ERR002, 400, __('errors.validation'), $e->errors()))->render();
+
+            case $e instanceof NotFoundHttpException:
+                return (new JsonResponse(ResponseCode::ERR003, 400, __('errors.notfound')))->render();
 
             default:
                 return (new JsonResponse(ResponseCode::ERR001, 400, $e->getMessage()))->render();
