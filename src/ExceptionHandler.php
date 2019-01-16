@@ -54,6 +54,9 @@ class ExceptionHandler extends Handler
             case $e instanceof NotFoundHttpException:
                 return (new JsonResponse(ResponseCode::ERR003, 400, __('errors.notfound')))->render();
 
+            case $e instanceof ModelNotFoundException:
+                return (new JsonResponse(ResponseCode::ERR004, 404, __('errors.notfound')))->render();
+
             default:
                 return (new JsonResponse(ResponseCode::ERR001, 400, $e->getMessage()))->render();
         }

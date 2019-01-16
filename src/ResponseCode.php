@@ -10,7 +10,7 @@ namespace SmartOver\ApiResponse;
 class ResponseCode
 {
     /**
-     * General
+     * General Success
      */
     const GNR001 = 'GNR001';
 
@@ -28,4 +28,19 @@ class ResponseCode
      * Not Found error code
      */
     const ERR003 = 'ERR003';
+
+    /**
+     * Record not found code
+     */
+    const ERR004 = 'ERR004';
+
+    /**
+     * Authorization Error
+     */
+    const ERR005 = 'ERR005';
+
+    /**
+     * Permission Error
+     */
+    const ERR006 = 'ERR006';
 }
