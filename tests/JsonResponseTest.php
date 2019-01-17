@@ -42,4 +42,18 @@ final class JsonResponseTest extends TestCase
         $this->assertSame($decoded->message, 'OK');
         $this->assertSame($decoded->data->foo, 'bar');
     }
+
+    public function testWithData()
+    {
+
+        $response = new JsonResponse();
+        $rendered = $response->withData(['foo' => 'bar'])->render();
+
+        $decoded = json_decode($rendered->content());
+        $this->assertInstanceOf('SmartOver\ApiResponse\JsonResponse', $response);
+        $this->assertSame($rendered->status(), 200);
+        $this->assertSame($decoded->code, 'GNR001');
+        $this->assertSame($decoded->message, 'OK');
+        $this->assertSame($decoded->data->foo, 'bar');
+    }
 }

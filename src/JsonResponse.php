@@ -66,4 +66,14 @@ class JsonResponse implements ResponseInterface
         ], $this->status)->header('Content-Type', 'application/json');
     }
 
+    /**
+     * @param $data
+     * @return $this
+     */
+    public function withData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
 }
