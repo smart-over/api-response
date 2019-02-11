@@ -9,6 +9,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Kreait\Firebase\Exception\AuthException;
 
 /**
  * Class ExceptionHandler
@@ -27,6 +28,7 @@ class ExceptionHandler extends Handler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
+        AuthException::class,
     ];
 
     /**
@@ -55,7 +57,10 @@ class ExceptionHandler extends Handler
                 return (new JsonResponse(ResponseCode::ERR003, 400, __('errors.notfound')))->render();
 
             case $e instanceof ModelNotFoundException:
-                return (new JsonResponse(ResponseCode::ERR004, 404, __('errors.notfound')))->render();
+
+                $message = $e->getModel().': '.__('errors.recordNotFound');
+
+                return (new JsonResponse(ResponseCode::ERR004, 404, $message))->render();
 
             default:
                 return (new JsonResponse(ResponseCode::ERR001, 400, $e->getMessage()))->render();
