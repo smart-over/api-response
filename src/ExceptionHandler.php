@@ -9,7 +9,6 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Kreait\Firebase\Exception\AuthException;
 
 /**
  * Class ExceptionHandler
@@ -28,7 +27,6 @@ class ExceptionHandler extends Handler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
-        AuthException::class,
     ];
 
     /**

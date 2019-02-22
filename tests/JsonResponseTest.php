@@ -43,6 +43,9 @@ final class JsonResponseTest extends TestCase
         $this->assertSame($decoded->data->foo, 'bar');
     }
 
+    /**
+     * Test with data
+     */
     public function testWithData()
     {
 
