@@ -43,4 +43,11 @@ class ResponseCode
      * Permission Error
      */
     const ERR006 = 'ERR006';
+
+    /**
+     * Required parameter error
+     */
+    const ERR007 = 'ERR007';
+
+
 }

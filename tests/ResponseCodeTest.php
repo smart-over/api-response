@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: omerkamcili
- * Date: 2019-01-09
- * Time: 17:24
- */
 
 namespace SmartOver\ApiResponse\Test;
 
