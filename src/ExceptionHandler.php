@@ -2,6 +2,7 @@
 
 namespace SmartOver\ApiResponse;
 
+use Google\Cloud\Core\Exception\ServiceException;
 use Laravel\Lumen\Exceptions\Handler;
 use Exception;
 use SmartOver\ApiResponse\Exceptions\ExceptionInterface;
@@ -33,6 +34,7 @@ class ExceptionHandler extends Handler
         GenericException::class,
         RequiredParameterException::class,
         ExceptionInterface::class,
+        ServiceException::class,
     ];
 
     /**
@@ -92,6 +94,19 @@ class ExceptionHandler extends Handler
             case $e instanceof ExceptionInterface:
 
                 $response = new JsonResponse($e->getCode(), $e->getStatus(), $e->getMessage(), $e->getData());
+
+                return $response->render();
+
+
+            /**
+             * Google cloud exceptions
+             */
+            case $e instanceof ServiceException:
+
+                $decoded  = json_decode($e->getMessage());
+                $message  = isset($decoded->error->message) ? $decoded->error->message : 'Cloud error';
+                $data     = isset($decoded->error) ? (array)$decoded->error : [];
+                $response = new JsonResponse(ResponseCode::ERR008, 400, $message, $data);
 
                 return $response->render();
 

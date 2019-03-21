@@ -49,5 +49,9 @@ class ResponseCode
      */
     const ERR007 = 'ERR007';
 
+    /**
+     * Google cloud error
+     */
+    const ERR008 = 'ERR008';
 
 }

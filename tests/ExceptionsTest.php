@@ -2,6 +2,7 @@
 
 namespace SmartOver\ApiResponse\Test;
 
+use Google\Cloud\Core\Exception\ServiceException;
 use PHPUnit\Framework\TestCase;
 use SmartOver\ApiResponse\ExceptionHandler;
 use SmartOver\ApiResponse\Exceptions\GenericException;
@@ -75,6 +76,27 @@ class ExceptionsTest extends TestCase
         $this->assertEquals(ResponseCode::ERR001, $decoded->code);
         $this->assertEquals('message', $decoded->message);
         $this->assertEquals(['foo' => 'bar'], (array)$decoded->data);
+
+    }
+
+
+    /**
+     * Test generic exception
+     */
+    public function testGoogleCloudException()
+    {
+        $request = Request::createFromBase(\Symfony\Component\HttpFoundation\Request::create(
+            "uri",
+            "get"
+        ));
+
+        $exception = new ExceptionHandler();
+        $except    = $exception->render($request, new ServiceException('test'));
+        $decoded   = json_decode($except->getContent());
+
+        $this->assertEquals(400, $except->status());
+        $this->assertEquals(ResponseCode::ERR008, $decoded->code);
+        $this->assertEquals('Cloud error', $decoded->message);
 
     }
 
