@@ -15,6 +15,11 @@ class ResponseCode
     const GNR001 = 'GNR001';
 
     /**
+     * Changes Request Created
+     */
+    const GNR002 = 'GNR002';
+
+    /**
      * General error code
      */
     const ERR001 = 'ERR001';
