@@ -58,5 +58,10 @@ class ResponseCode
      * Google cloud error
      */
     const ERR008 = 'ERR008';
+    
+    /**
+     * Token is missing
+     */
+    const ERR009 = 'ERR009';
 
 }
